@@ -1,0 +1,34 @@
+.quote-container {
+  margin: 30px auto;
+  text-align: center;
+  height: 150px;
+  width: 800px;
+  border: 2px solid;
+  border-color: brown;
+  border-radius: 3px;
+}
+
+.quote-container h3{
+  margin: 64px auto;
+  font-size: 26px;
+  color: #212020;
+}
+
+h1 {
+  font-size: 50px;
+  color: brown;
+}
+
+.refresh-button {
+  height: 50px;
+  width: 120px;
+  border-radius: 30px;
+  background: #a52a2af7;
+  color: white;
+  font-size: 22px;
+  border-color: #0000009c;
+}
+
+button:focus {
+  outline: none;
+}
