@@ -17,6 +17,13 @@ export class AppComponent implements OnInit {
     'Un vincitore è semplicemente un sognatore che non si è mai arreso',
     'La violenza è un sintomo di impotenza'
   ];
+  todoInput: string;
+  todoArray: string[];
+
+  constructor() {
+    this.todoInput = '';
+    this.todoArray = new Array();
+  }
 
   ngOnInit() {
     this.setDailyQuote();
@@ -24,5 +31,25 @@ export class AppComponent implements OnInit {
 
   setDailyQuote() {
     this.dailyQuote = this.quotesArray[Math.floor(Math.random() * this.quotesArray.length)];
+  }
+
+  /**
+   * @function
+   * @name addTodo
+   * @description Push the todoInput in the array
+   */
+  addTodo() {
+    this.todoArray.push(this.todoInput);
+    this.resetTodoInput();
+  }
+
+  
+  /**
+   * @function
+   * @name resetTodoInput
+   * @description Reset the todoInput value
+   */
+  resetTodoInput() {
+    this.todoInput = '';
   }
 }
