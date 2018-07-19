@@ -1,10 +1,11 @@
 .quote-container {
   margin: 30px auto;
   text-align: center;
-  height: 150px;
+  /* height: 150px; */
   width: 800px;
   border: 2px solid;
-  border-color: brown;
+  /* border-color: brown; */
+  border-color: #3f51b5;
   border-radius: 3px;
 }
 
@@ -16,7 +17,8 @@
 
 h1 {
   font-size: 50px;
-  color: brown;
+  /* color: brown; */
+  color: #3f51b5;
 }
 
 .refresh-button {
@@ -39,37 +41,34 @@ button:focus {
   background-color: #3f51b5;
   box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
   box-sizing: border-box;
-    position: relative;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
-    outline: 0;
-    border: none;
-    -webkit-tap-highlight-color: transparent;
-    display: inline-block;
-    white-space: nowrap;
-    text-decoration: none;
-    vertical-align: baseline;
-    text-align: center;
-    margin: 0;
-    min-width: 88px;
-    line-height: 36px;
-    padding: 0 16px;
-    border-radius: 2px;
-    overflow: visible;
-    transform: translate3d(0,0,0);
-    transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
-    min-width: 0;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    flex-shrink: 0;
-    font-family: Roboto,"Helvetica Neue",sans-serif;
-    font-size: 14px;
-    font-weight: 500;   
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  margin: 0;
+  min-width: 88px;
+  line-height: 36px;
+  padding: 0 16px;
+  border-radius: 2px;
+  overflow: visible;
+  transform: translate3d(0,0,0);
+  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  min-width: 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  flex-shrink: 0;
 }
 
 .inner-container{
@@ -79,10 +78,7 @@ button:focus {
 
 .m-text {
   border: none;
-  border-bottom: 1px solid; 
-  font-family: Roboto,"Helvetica Neue",sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  border-bottom: 1px solid;
   width: 90%;
   float: right;
 }
@@ -107,7 +103,10 @@ button:focus {
     width: 20px;
     flex-shrink: 0;
 }
-.table-button {
+.delete-button-icon {
+  color: #3f51b5;
+  cursor: pointer;
+  font-size: 22px;
   position: relative;
   right: 0px;
 }
@@ -127,4 +126,33 @@ table tr td:first-child {
 table tr td:last-child {
   width: 15%;
   float: right;
+}
+
+.m-warn-button {
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  background-color: #df2c1f;
+  color: #fff;
+  box-sizing: border-box;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  margin: 0;
+  min-width: 88px;
+  line-height: 36px;
+  padding: 0 16px;
+  border-radius: 2px;
+  transform: translate3d(0,0,0);
+  transition: background .4s cubic-bezier(.25,.8,.25,1),box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  font-family: Roboto,Helvetica Neue,sans-serif;
 }
