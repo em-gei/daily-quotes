@@ -6,13 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'What i have to do?';
+  title: string;
   todoInput: string;
   todoArray: string[];
   checkedArray: boolean[];
   showDeleteSelected: boolean;
 
   constructor() {
+    this.title = 'What i have to do?';
     this.todoInput = '';
     this.todoArray = new Array();
     this.checkedArray = new Array();
@@ -22,7 +23,7 @@ export class AppComponent {
   /**
    * @function
    * @name addTodo
-   * @description Push the todoInput in the array
+   * @description Push the todoInput in the array, set the checkedArray and reset todoInput value
    */
   addTodo() {
     this.todoArray.push(this.todoInput);
@@ -33,17 +34,29 @@ export class AppComponent {
   /**
    * @function
    * @name deleteTodo
-   * @description Delete index element of todoArray
+   * @description Delete index element of todoArray and the checkedArray element
    * @param {number} index Index of todoArray to delete
    */
   deleteTodo(index: number) {
     this.todoArray.splice(index, 1);
+    this.checkedArray.splice(index, 1);
+  }
+
+  /**
+   * @function
+   * @name deleteSingleTodo
+   * @description Invoke deleteTodo() and the checkDeleteSelectedVisibility()
+   * @param {number} index Index of todoArray to delete
+   */
+  deleteSingleTodo(index: number) {
+    this.deleteTodo(index);
+    this.checkDeleteSelectedVisibility();
   }
 
   /**
  * @function
  * @name deleteSelectedTodo
- * @description Delete checked element of todoArray
+ * @description Delete checked element of todoArray and the respective checkedArray element
  * @param {number} index Index of todoArray to delete
  */
   deleteSelectedTodo() {
@@ -51,6 +64,7 @@ export class AppComponent {
     while (checkedIndex >= 0) {
       if (this.checkedArray[checkedIndex]) {
         this.todoArray.splice(checkedIndex, 1);
+        this.checkedArray.splice(checkedIndex, 1);
       }
       checkedIndex--;
     }
@@ -59,7 +73,7 @@ export class AppComponent {
   /**
    * @function
    * @name checkDeleteSelectedVisibility
-   * @description On check button click check the visibility for deleteSelectedTodo button
+   * @description On checkbox button click check the visibility for deleteSelectedTodo button
    */
   checkDeleteSelectedVisibility() {
     for (const flag of this.checkedArray) {

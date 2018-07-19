@@ -1,13 +1,11 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <form action="">
   <div style="text-align:center">
     <h1 class="title">
       {{ title }}
     </h1>
-    <h1 name="secondo">secondo</h1>
   </div>
 
-  <div class="quote-container">
+  <div class="container">
     <div class="inner-container">
       <button class="m-button" name="addButton" (click)="addTodo()" [disabled]="!todoInput">+</button>
       <input type="text" name="todoInput" class="m-text" placeholder="I have to do..." [(ngModel)]="todoInput" (action)="addTodo()">
@@ -20,12 +18,12 @@
             <label for="">{{ (i + 1) + ': ' + todo }}</label>
           </td>
           <td>
-            <i class="delete-button-icon fa fa-trash" aria-hidden="true" (click)="deleteTodo(i)"></i>
+            <i class="delete-button-icon fa fa-trash" aria-hidden="true" (click)="deleteSingleTodo(i)"></i>
           </td>
         </tr>
       </table>
       <div style="text-align:center">
-        <button class="m-warn-button" name="deleteSelectedButton" (click)="deleteSelectedTodo()" *ngIf="showDeleteSelected">Delete selected</button>
+        <button class="m-warn-button" name="deleteSelectedButton" id="deleteSelectedButton" (click)="deleteSelectedTodo()" *ngIf="showDeleteSelected">Delete selected</button>
       </div>
     </div>
   </div>

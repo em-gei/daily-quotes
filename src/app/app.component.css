@@ -1,4 +1,4 @@
-.quote-container {
+.container {
   margin: 30px auto;
   text-align: center;
   /* height: 150px; */
@@ -9,7 +9,7 @@
   border-radius: 3px;
 }
 
-.quote-container h3{
+.container h3{
   margin: 64px auto;
   font-size: 26px;
   color: #212020;

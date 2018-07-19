@@ -1,89 +1,71 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { AppService } from './service/app.service';
+import { DebugElement } from '../../node_modules/@angular/core';
+import { $ } from '../../node_modules/protractor';
+import { By } from '../../node_modules/@types/selenium-webdriver';
 
-var customMatcher: any = {
-  toBeGoofy: function (util, customEqualityTesters) {
-    return {
-      compare: function (actual, expected) {
-        if (expected === undefined) {
-          expected = '';
-        }
-        var result = {};
-        result['pass'] = util.equals(actual.hyuk, "gawrsh" + expected, customEqualityTesters);
-        if (result['pass']) {
-          result['message'] = "Expected " + actual + " not to be quite so goofy";
-        } else {
-          result['message'] = "Expected " + actual + " to be goofy, but it was not very goofy";
-        }
-        return result;
-      }
-    };
-  }
-};
-
-
-
+// Describe(string, function), Jasmine global function
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let debugElement: DebugElement;
+  let app: AppComponent;
+  let fakeAppService: any;
+
   beforeEach(async(() => {
-    jasmine.addMatchers(customMatcher);
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
       imports: [
         FormsModule
+      ],
+      providers: [
+        AppService
       ]
     }).compileComponents();
+
+    // Setting
+    fixture = TestBed.createComponent(AppComponent);
+    debugElement = fixture.debugElement;
+    app = debugElement.componentInstance;
+
+    fakeAppService = jasmine.createSpyObj(fakeAppService, ['getDefaultTodo']);
+    fakeAppService.getDefaultTodo.and.returnValue('prova');
   }));
 
+  // UNIT TEST
+
+  // it(string, function), Jasmine global function
   it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-    expect({
-      hyuk: 'gawrsh'
-    }).toBeGoofy();
   }));
 
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+  it(`should have as title 'What i have to do?'`, async(() => {
     expect(app.title).toEqual('What i have to do?');
   }));
 
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    debugger;
-    const compiled = fixture.debugElement.nativeElement;
-    const titleElement = compiled.getElementById('title');
-    expect(titleElement).toBeTruthy();
+  it('addTodo() should increment array length by 1', () => {
+    let arrayLength = app.todoArray.length;
+    app.todoInput = 'prova';
+    app.addTodo();
+    expect(app.todoArray.length).toBe(arrayLength + 1);
+  });
+
+  // INTEGRATION TEST
+  it('should not render deleteSelected button when checkedArray.lenth = 0', async(() => {
+    expect(app.checkedArray.length).toBe(0);
+    expect(document.getElementById('deleteSelectedButton')).toBeNull();
   }));
 
-  it(`should have valid quote`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    app.setDailyQuote();
-    expect(app.dailyQuote).toBeDefined();
-  }));
+  it('AppService should be called', () => {
+    fakeAppService.getDefaultTodo();
+    expect(fakeAppService.getDefaultTodo).toHaveBeenCalled();
+  });
 
-  it('should render refresh button', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    // fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('button').textContent).toContain('Refresh');
-  }));
-
-  it('Refresh should update the quote', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    const compiled = fixture.debugElement.nativeElement;
-    let button = fixture.debugElement.nativeElement.querySelector('button');
-    button.click();
-    const firstQuote = app.dailyQuote;
-    button.click();
-    const secondQuote = app.dailyQuote;
-    expect(firstQuote !== secondQuote).toBeTruthy();
+  it('AppService getDefaultTodo should return prova', () => {
+    const todo = fakeAppService.getDefaultTodo();
+    expect(todo).toBe('prova');
   });
 });
